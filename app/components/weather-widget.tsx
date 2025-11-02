@@ -1,6 +1,21 @@
+"use client"
+
+import { useState } from "react"
+
+interface WeatherData {
+  temperature: number
+  condition: string
+}
+
 function WeatherWidget() {
+  const [location, setLocation] = useState<string>("")
+  const [weather, setWeather] = useState<WeatherData | null>(null)
+  
+  const getLocation = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setLocation(event.target.value)
+  }
   return (
-    <div className="mx-auto bg-white shadow-lg rounded-2xl p-8 text-center border border-gray-100">
+    <div className="mx-auto bg-white shadow-lg rounded-2xl p-8 text-center border border-gray-100" onChange={getLocation}>
       <h1 className="text-3xl font-semibold text-gray-800 mb-2">🌤️ Weather Widget</h1>
       <p className="text-gray-600 mb-6">
         Search for the current weather conditions in your city
