@@ -11,9 +11,11 @@ function WeatherWidget() {
   const [location, setLocation] = useState<string>("")
   const [weather, setWeather] = useState<WeatherData | null>(null)
   
-  const getLocation = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const getLocation = async (event: React.ChangeEvent<HTMLInputElement>) => {
     setLocation(event.target.value)
+    const response = await fetch(`https://api.weatherapi.com/v1/current.json?key=${process.env.NEXT_PUBLIC_WEATHER_API_KEY}`);
   }
+ 
   return (
     <div className="mx-auto bg-white shadow-lg rounded-2xl p-8 text-center border border-gray-100" onChange={getLocation}>
       <h1 className="text-3xl font-semibold text-gray-800 mb-2">🌤️ Weather Widget</h1>
